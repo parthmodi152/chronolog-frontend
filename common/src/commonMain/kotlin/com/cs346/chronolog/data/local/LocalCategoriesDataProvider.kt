@@ -1,0 +1,32 @@
+package com.cs346.chronolog.data.local
+
+import com.cs346.chronolog.data.model.Category
+
+object LocalCategoriesDataProvider {
+    val allCategory = listOf(
+        Category(
+            id = 0L,
+            name = "Kotlin",
+            sum = 3
+        ),
+        Category(
+            id = 1L,
+            name = "Android",
+            sum = 2
+        ),
+        Category(
+            id = 2L,
+            name = "Java",
+            sum = 1
+        ),
+        Category(
+            id = 3L,
+            name = "Other",
+            sum = 1
+        )
+    )
+
+    fun getCategoryById(id: Long): Category {
+        return allCategory.first { it.id == id }
+    }
+}
