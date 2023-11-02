@@ -38,7 +38,6 @@ compose.desktop {
             description = "Chronolog"
             copyright = "© 2023. All rights reserved."
             vendor = "cs346.love"
-            licenseFile.set(project.file("LICENSE"))
 
             windows {
                 packageVersion = "1.0.0"
