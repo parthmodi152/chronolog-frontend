@@ -1,10 +1,8 @@
 package com.cs346.chronolog.ui.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Article
-import androidx.compose.material.icons.filled.Category
-import androidx.compose.material.icons.filled.Groups
-import androidx.compose.material.icons.filled.LocalOffer
+import androidx.compose.material.icons.filled.ListAlt
+import androidx.compose.material.icons.filled.Folder
 import androidx.compose.ui.graphics.vector.ImageVector
 
 object ChronologRoute {
@@ -26,14 +24,14 @@ data class ChronologTopLevelDestination(
 val TOP_LEVEL_DESTINATIONS = listOf(
     ChronologTopLevelDestination(
         route = ChronologRoute.NOTES,
-        selectedIcon = Icons.Default.Article,
-        unselectedIcon = Icons.Default.Article,
+        selectedIcon = Icons.Default.ListAlt,
+        unselectedIcon = Icons.Default.ListAlt,
         iconText = "Notes"
     ),
     ChronologTopLevelDestination(
         route = ChronologRoute.CATEGORIES,
-        selectedIcon = Icons.Default.Category,
-        unselectedIcon = Icons.Default.Category,
+        selectedIcon = Icons.Default.Folder,
+        unselectedIcon = Icons.Default.Folder,
         iconText = "Categories"
     ),
 )

@@ -5,7 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Category
+import androidx.compose.material.icons.filled.Label
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -108,7 +108,7 @@ fun MyChip(
         },
         leadingIcon = {
             Icon(
-                imageVector = Icons.Default.Category,
+                imageVector = Icons.Default.Label,
                 contentDescription = "Category"
             )
         }
