@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 object ChronologRoute {
     const val NOTES = "Notes"
     const val CATEGORIES = "Categories"
+    const val LOGIN = "LOGIN"
 }
 
 interface ChronologRouteDestination {

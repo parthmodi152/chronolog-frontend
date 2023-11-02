@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import com.cs346.chronolog.ui.category.CategoriesViewModel
+import com.cs346.chronolog.ui.login.LoginViewModel
 import com.cs346.chronolog.ui.navigation.*
 import com.cs346.chronolog.ui.note.NotesViewModel
 import com.cs346.chronolog.ui.utils.ChronologContentType
@@ -25,6 +26,7 @@ fun ChronologDesktopApp(
     windowState: WindowState,
     notesViewModel: NotesViewModel,
     categoriesViewModel: CategoriesViewModel,
+    loginViewModel: LoginViewModel,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -50,7 +52,8 @@ fun ChronologDesktopApp(
         navigateToTopLevelDestination = navigationActions::navigateTo,
         notesViewModel = notesViewModel,
         categoriesViewModel = categoriesViewModel,
-        scope = scope
+        scope = scope,
+        loginViewModel = loginViewModel,
     )
 }
 
@@ -63,13 +66,14 @@ fun ChronologDesktopAppContent(
     contentType: ChronologContentType,
     notesViewModel: NotesViewModel,
     categoriesViewModel: CategoriesViewModel,
+    loginViewModel: LoginViewModel,
     selectedDestination: String = ChronologRoute.NOTES,
     navigationContentPosition: ChronologNavigationContentPosition = ChronologNavigationContentPosition.CENTER,
     navigateToTopLevelDestination: (ChronologTopLevelDestination) -> Unit,
     scope: CoroutineScope,
 ) {
     Row(modifier = modifier.fillMaxSize()) {
-        AnimatedVisibility(visible = navigationType == ChronologNavigationType.NAVIGATION_RAIL) {
+        if (navigationType == ChronologNavigationType.NAVIGATION_RAIL && selectedDestination != ChronologRoute.LOGIN) {
             ChronologNavigationRail(
                 selectedDestination = selectedDestination,
                 navigationContentPosition = navigationContentPosition,
@@ -88,6 +92,7 @@ fun ChronologDesktopAppContent(
                 windowState = windowState,
                 notesViewModel = notesViewModel,
                 categoriesViewModel = categoriesViewModel,
+                loginViewModel = loginViewModel,
             )
         }
     }

@@ -6,7 +6,7 @@ object LocalNotesDataProvider {
     val allNotes = listOf(
         Note(
             id = 0L,
-            author = LocalAccountsDataProvider.getContactAccountById(1L),
+            author = LocalAccountsDataProvider.UserAccount,
             subject = "Chronolog",
             body = """
 # CS346-Fall2023 Team_118

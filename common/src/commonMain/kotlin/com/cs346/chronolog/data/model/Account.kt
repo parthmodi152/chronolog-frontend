@@ -6,7 +6,6 @@ data class Account(
     val lastName: String,
     val phoneNumber: String,
     val email: String,
-    val altEmail: String,
     val avatar: String, // picture dir
     var isCurrentAccount: Boolean = false
 ) {

@@ -20,6 +20,7 @@ import com.cs346.chronolog.data.getImageByFileName
 import com.cs346.chronolog.data.painterResource
 import com.cs346.chronolog.ui.category.CategoriesViewModel
 import com.cs346.chronolog.ui.components.ChronologMenuBar
+import com.cs346.chronolog.ui.login.LoginViewModel
 import com.cs346.chronolog.ui.note.NotesViewModel
 import com.cs346.chronolog.ui.theme.ChronologTheme
 import com.cs346.chronolog.ui.utils.setMinSize
@@ -42,6 +43,7 @@ fun main() = application {
     ) {
         val notesViewModel = viewModel { NotesViewModel() }
         val categoriesViewModel = viewModel { CategoriesViewModel() }
+        val loginViewModel = viewModel { LoginViewModel() }
         var darkTheme: Boolean by remember { mutableStateOf(false) }
         setMinSize()
         ChronologTheme(
@@ -64,6 +66,7 @@ fun main() = application {
                         windowState = windowState,
                         notesViewModel = notesViewModel,
                         categoriesViewModel = categoriesViewModel,
+                        loginViewModel = loginViewModel
                     )
                 }
             }

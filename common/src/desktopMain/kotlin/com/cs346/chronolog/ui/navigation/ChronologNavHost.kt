@@ -15,8 +15,10 @@ import com.cs346.chronolog.ui.category.CategoriesUIState
 import com.cs346.chronolog.ui.category.CategoriesViewModel
 import com.cs346.chronolog.ui.note.NotesUIState
 import com.cs346.chronolog.ui.note.NotesViewModel
+import com.cs346.chronolog.ui.login.LoginViewModel
 import com.cs346.chronolog.ui.screen.*
 import moe.tlaster.precompose.navigation.NavHost
+import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.Navigator
 import moe.tlaster.precompose.navigation.transition.NavTransition
 
@@ -25,6 +27,7 @@ fun ChronologNavHost(
     navigator: Navigator,
     windowState: WindowState,
     notesViewModel: NotesViewModel,
+    loginViewModel: LoginViewModel,
     categoriesViewModel: CategoriesViewModel,
 ) {
     val notesUIState by notesViewModel.uiState.collectAsState(null)
@@ -32,7 +35,7 @@ fun ChronologNavHost(
     NavHost(
         modifier = Modifier,
         navigator = navigator,
-        initialRoute = ChronologRoute.NOTES,
+        initialRoute = ChronologRoute.LOGIN, // change initialRoute to LOGIN
         navTransition = NavTransition(
             createTransition = expandHorizontally(expandFrom = Alignment.Start),
             destroyTransition = shrinkHorizontally(shrinkTowards = Alignment.Start) + fadeOut(),
@@ -40,6 +43,29 @@ fun ChronologNavHost(
             pauseTransition = shrinkHorizontally(shrinkTowards = Alignment.Start) + fadeOut(),
         )
     ) {
+        scene(
+            route = ChronologRoute.LOGIN
+        ) {
+            LoginScreen(
+                viewModel = loginViewModel,
+                onLoginSuccess = {
+                    navigator.navigate(
+                        ChronologRoute.NOTES,
+                        NavOptions(
+                            launchSingleTop = true
+                        )
+                    )
+                },
+                onSignupSuccess = {
+                    navigator.navigate(
+                        ChronologRoute.LOGIN,
+                        NavOptions(
+                            launchSingleTop = true
+                        )
+                    )
+                }
+            )
+        }
         scene(
             route = ChronologRoute.NOTES
         ) {
