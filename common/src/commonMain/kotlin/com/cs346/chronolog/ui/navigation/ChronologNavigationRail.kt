@@ -24,7 +24,6 @@ fun ChronologNavigationRail(
     navigationContentPosition: ChronologNavigationContentPosition,
     navigateToTopLevelDestination: (ChronologTopLevelDestination) -> Unit,
     onDrawerClicked: () -> Unit = {},
-    addNote: () -> Unit,
     menuVisibility: Boolean = true
 ) {
     NavigationRail(
@@ -53,7 +52,7 @@ fun ChronologNavigationRail(
                         )
                     }
                     FloatingActionButton(
-                        onClick = addNote,
+                        onClick = {},
                         modifier = Modifier
                             .padding(top = 10.dp, bottom = 0.dp)
                             .align(Alignment.CenterHorizontally),

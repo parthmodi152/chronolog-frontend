@@ -125,10 +125,8 @@ fun WindowScope.ChronologMenuBar(
 
 
 fun Modifier.doubleClick(onDoubleClick: (Offset) -> Unit): Modifier =
-    //处理手势反馈
     pointerInput(this) {
-        //处理基础手势反馈
         detectTapGestures(
-            onDoubleTap = onDoubleClick//双击时回调
+            onDoubleTap = onDoubleClick
         )
     }

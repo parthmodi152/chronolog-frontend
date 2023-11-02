@@ -20,8 +20,6 @@ fun NotesSinglePaneContent(
     noteLazyListState: LazyListState,
     closeDetailScreen: () -> Unit,
     navigateToDetail: (Long, ChronologContentType) -> Unit,
-    addNote: () -> Unit,
-    tagsGrid: @Composable () -> Unit = {},
     stateVertical: ScrollState = rememberScrollState()
 ) {
     val detailVisibility: Boolean =
@@ -37,7 +35,6 @@ fun NotesSinglePaneContent(
             noteLazyListState = noteLazyListState,
             modifier = modifier,
             navigateToDetail = navigateToDetail,
-            tagsGrid = tagsGrid,
         )
     }
     AnimatedVisibility(
@@ -51,7 +48,6 @@ fun NotesSinglePaneContent(
         notesUIState.selectedNote?.let {
             NoteDetailScreen(
                 note = it,
-                addNote = addNote,
                 onBackPressed = closeDetailScreen,
                 stateVertical = stateVertical
             )

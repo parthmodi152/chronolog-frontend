@@ -33,11 +33,9 @@ fun NoteScreen(
     notesUIState: UIState,
     navigationType: ChronologNavigationType,
     displayFeatures: List<DisplayFeature>,
-    addNote: () -> Unit,
     closeDetailScreen: () -> Unit,
     navigateToDetail: (Long, ChronologContentType) -> Unit,
     modifier: Modifier = Modifier,
-    tagsGrid: @Composable () -> Unit = {},
 ) {
     LaunchedEffect(key1 = contentType) {
         if ((contentType == ChronologContentType.SINGLE_PANE) && !notesUIState.isDetailOnlyOpen) {
@@ -60,14 +58,12 @@ fun NoteScreen(
                         }
                         navigateToDetail(id, type)
                     },
-                    tagsGrid = tagsGrid
                 )
             },
             second = {
                 NoteDetailScreen(
                     note = notesUIState.selectedNote ?: notesUIState.notes.first(),
                     isFullScreen = false,
-                    addNote = addNote,
                     stateVertical = stateVertical
                 )
             },
@@ -87,13 +83,11 @@ fun NoteScreen(
                     }
                     navigateToDetail(id, type)
                 },
-                addNote = addNote,
                 stateVertical = stateVertical,
-                tagsGrid = tagsGrid
             )
             if (navigationType == ChronologNavigationType.BOTTOM_NAVIGATION) {
                 FloatingActionButton(
-                    onClick = addNote,
+                    onClick = { },
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(15.dp),

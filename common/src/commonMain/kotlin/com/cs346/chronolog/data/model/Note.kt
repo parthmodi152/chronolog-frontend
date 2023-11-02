@@ -6,7 +6,6 @@ data class Note(
     val subject: String,
     val body: String,
     val category: Category,
-    val tag: List<Tag> = emptyList(),
     var isStarred: Boolean = false,
     val createdAt: String
 )

@@ -20,10 +20,7 @@ import com.cs346.chronolog.data.getImageByFileName
 import com.cs346.chronolog.data.painterResource
 import com.cs346.chronolog.ui.category.CategoriesViewModel
 import com.cs346.chronolog.ui.components.ChronologMenuBar
-import com.cs346.chronolog.ui.contact.ContactsViewModel
-import com.cs346.chronolog.ui.edit.EditViewModel
 import com.cs346.chronolog.ui.note.NotesViewModel
-import com.cs346.chronolog.ui.tag.TagsViewModel
 import com.cs346.chronolog.ui.theme.ChronologTheme
 import com.cs346.chronolog.ui.utils.setMinSize
 import moe.tlaster.precompose.PreComposeWindow
@@ -44,10 +41,7 @@ fun main() = application {
         transparent = true
     ) {
         val notesViewModel = viewModel { NotesViewModel() }
-        val editViewModel = viewModel { EditViewModel() }
-        val contactsViewModel = viewModel { ContactsViewModel() }
         val categoriesViewModel = viewModel { CategoriesViewModel() }
-        val tagsViewModel = viewModel { TagsViewModel() }
         var darkTheme: Boolean by remember { mutableStateOf(false) }
         setMinSize()
         ChronologTheme(
@@ -69,10 +63,7 @@ fun main() = application {
                     ChronologDesktopApp(
                         windowState = windowState,
                         notesViewModel = notesViewModel,
-                        contactsViewModel = contactsViewModel,
                         categoriesViewModel = categoriesViewModel,
-                        tagsViewModel = tagsViewModel,
-                        editViewModel = editViewModel,
                     )
                 }
             }

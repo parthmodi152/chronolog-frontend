@@ -11,11 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import com.cs346.chronolog.ui.category.CategoriesViewModel
-import com.cs346.chronolog.ui.contact.ContactsViewModel
-import com.cs346.chronolog.ui.edit.EditViewModel
 import com.cs346.chronolog.ui.navigation.*
 import com.cs346.chronolog.ui.note.NotesViewModel
-import com.cs346.chronolog.ui.tag.TagsViewModel
 import com.cs346.chronolog.ui.utils.ChronologContentType
 import com.cs346.chronolog.ui.utils.ChronologNavigationContentPosition
 import com.cs346.chronolog.ui.utils.ChronologNavigationType
@@ -27,10 +24,7 @@ import moe.tlaster.precompose.navigation.rememberNavigator
 fun ChronologDesktopApp(
     windowState: WindowState,
     notesViewModel: NotesViewModel,
-    contactsViewModel: ContactsViewModel,
     categoriesViewModel: CategoriesViewModel,
-    tagsViewModel: TagsViewModel,
-    editViewModel: EditViewModel
 ) {
     val scope = rememberCoroutineScope()
 
@@ -47,17 +41,6 @@ fun ChronologDesktopApp(
     val backStackEntry by navigator.currentEntry.collectAsState(null)
     val selectedDestination = backStackEntry?.route?.route ?: ChronologRoute.NOTES
 
-    val addNote = {
-        if (editViewModel.noteSubject == "") {
-            navigator.navigate(EditDestination.route)
-            editViewModel.onInit()
-        }
-    }
-//    Column {
-//        Text(text = windowState.size.width.value.toString())
-//        Text(text = windowState.size.height.value.toString())
-//        Text(text = contentType.toString())
-//    }
     ChronologDesktopAppContent(
         navigator = navigator,
         windowState = windowState,
@@ -66,11 +49,7 @@ fun ChronologDesktopApp(
         selectedDestination = selectedDestination,
         navigateToTopLevelDestination = navigationActions::navigateTo,
         notesViewModel = notesViewModel,
-        contactsViewModel = contactsViewModel,
         categoriesViewModel = categoriesViewModel,
-        tagsViewModel = tagsViewModel,
-        editViewModel = editViewModel,
-        addNote = addNote,
         scope = scope
     )
 }
@@ -83,14 +62,10 @@ fun ChronologDesktopAppContent(
     navigationType: ChronologNavigationType,
     contentType: ChronologContentType,
     notesViewModel: NotesViewModel,
-    contactsViewModel: ContactsViewModel,
     categoriesViewModel: CategoriesViewModel,
-    tagsViewModel: TagsViewModel,
-    editViewModel: EditViewModel,
     selectedDestination: String = ChronologRoute.NOTES,
     navigationContentPosition: ChronologNavigationContentPosition = ChronologNavigationContentPosition.CENTER,
     navigateToTopLevelDestination: (ChronologTopLevelDestination) -> Unit,
-    addNote: () -> Unit,
     scope: CoroutineScope,
 ) {
     Row(modifier = modifier.fillMaxSize()) {
@@ -100,7 +75,6 @@ fun ChronologDesktopAppContent(
                 navigationContentPosition = navigationContentPosition,
                 navigateToTopLevelDestination = navigateToTopLevelDestination,
                 onDrawerClicked = { },
-                addNote = addNote,
                 menuVisibility = false
             )
         }
@@ -112,13 +86,8 @@ fun ChronologDesktopAppContent(
             ChronologNavHost(
                 navigator = navigator,
                 windowState = windowState,
-                contentType = contentType,
                 notesViewModel = notesViewModel,
-                contactsViewModel = contactsViewModel,
                 categoriesViewModel = categoriesViewModel,
-                tagsViewModel = tagsViewModel,
-                editViewModel = editViewModel,
-                scope = scope
             )
         }
     }

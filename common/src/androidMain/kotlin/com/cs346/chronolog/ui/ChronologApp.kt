@@ -21,11 +21,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.window.layout.DisplayFeature
 import androidx.window.layout.FoldingFeature
 import com.cs346.chronolog.ui.category.CategoriesViewModel
-import com.cs346.chronolog.ui.contact.ContactsViewModel
-import com.cs346.chronolog.ui.edit.EditViewModel
 import com.cs346.chronolog.ui.navigation.*
 import com.cs346.chronolog.ui.note.NotesViewModel
-import com.cs346.chronolog.ui.tag.TagsViewModel
 import com.cs346.chronolog.ui.utils.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -35,10 +32,7 @@ fun ChronologApp(
     windowSize: WindowSizeClass,
     displayFeatures: List<DisplayFeature>,
     notesViewModel: NotesViewModel,
-    contactsViewModel: ContactsViewModel,
     categoriesViewModel: CategoriesViewModel,
-    tagsViewModel: TagsViewModel,
-    editViewModel: EditViewModel
 ) {
     val navigationType: ChronologNavigationType
     val contentType: ChronologContentType
@@ -109,10 +103,7 @@ fun ChronologApp(
             displayFeatures = displayFeatures,
             navigationContentPosition = navigationContentPosition,
             notesViewModel = notesViewModel,
-            contactsViewModel = contactsViewModel,
             categoriesViewModel = categoriesViewModel,
-            tagsViewModel = tagsViewModel,
-            editViewModel = editViewModel
         )
     }
 
@@ -126,10 +117,7 @@ fun ChronologNavigationWrapper(
     displayFeatures: List<DisplayFeature>,
     navigationContentPosition: ChronologNavigationContentPosition,
     notesViewModel: NotesViewModel,
-    contactsViewModel: ContactsViewModel,
     categoriesViewModel: CategoriesViewModel,
-    tagsViewModel: TagsViewModel,
-    editViewModel: EditViewModel
 ) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -142,12 +130,8 @@ fun ChronologNavigationWrapper(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     val selectedDestination = navBackStackEntry?.destination?.route ?: ChronologRoute.NOTES
-    val chronologBottomVisible =
-        (navigationType == ChronologNavigationType.BOTTOM_NAVIGATION) && (navController.currentDestination?.route != EditDestination.routeWithArg)
-    val addNote = {
-        navController.navigate(EditDestination.route)
-        editViewModel.onInit()
-    }
+    val chronologBottomVisible = navigationType == ChronologNavigationType.BOTTOM_NAVIGATION
+    val addNote = { }
     if (navigationType == ChronologNavigationType.PERMANENT_NAVIGATION_DRAWER) {
         PermanentNavigationDrawer(drawerContent = {
             PermanentNavigationDrawerContent(
@@ -165,10 +149,7 @@ fun ChronologNavigationWrapper(
                 displayFeatures = displayFeatures,
                 navigationContentPosition = navigationContentPosition,
                 notesViewModel = notesViewModel,
-                contactsViewModel = contactsViewModel,
                 categoriesViewModel = categoriesViewModel,
-                tagsViewModel = tagsViewModel,
-                editViewModel = editViewModel,
                 navigateToTopLevelDestination = navigationActions::navigateTo,
                 addNote = addNote,
                 scope = scope
@@ -197,10 +178,7 @@ fun ChronologNavigationWrapper(
                 selectedDestination = selectedDestination,
                 contentType = contentType,
                 notesViewModel = notesViewModel,
-                contactsViewModel = contactsViewModel,
                 categoriesViewModel = categoriesViewModel,
-                tagsViewModel = tagsViewModel,
-                editViewModel = editViewModel,
                 displayFeatures = displayFeatures,
                 navigationContentPosition = navigationContentPosition,
                 navigateToTopLevelDestination = navigationActions::navigateTo,
@@ -226,10 +204,7 @@ fun ChronologAppContent(
     displayFeatures: List<DisplayFeature>,
     navigationContentPosition: ChronologNavigationContentPosition,
     notesViewModel: NotesViewModel,
-    contactsViewModel: ContactsViewModel,
     categoriesViewModel: CategoriesViewModel,
-    tagsViewModel: TagsViewModel,
-    editViewModel: EditViewModel,
     navigateToTopLevelDestination: (ChronologTopLevelDestination) -> Unit,
     chronologBottomVisible: Boolean = false,
     addNote: () -> Unit,
@@ -256,10 +231,7 @@ fun ChronologAppContent(
                 contentType = contentType,
                 displayFeatures = displayFeatures,
                 notesViewModel = notesViewModel,
-                contactsViewModel = contactsViewModel,
                 categoriesViewModel = categoriesViewModel,
-                tagsViewModel = tagsViewModel,
-                editViewModel = editViewModel,
                 navigationType = navigationType,
                 modifier = Modifier.weight(1f),
                 scope = scope

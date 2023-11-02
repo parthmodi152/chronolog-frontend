@@ -9,9 +9,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 object ChronologRoute {
     const val NOTES = "Notes"
-    const val CONTACTS = "Contacts"
     const val CATEGORIES = "Categories"
-    const val TAGS = "Tags"
 }
 
 interface ChronologRouteDestination {
@@ -33,21 +31,9 @@ val TOP_LEVEL_DESTINATIONS = listOf(
         iconText = "Notes"
     ),
     ChronologTopLevelDestination(
-        route = ChronologRoute.CONTACTS,
-        selectedIcon = Icons.Default.Groups,
-        unselectedIcon = Icons.Default.Groups,
-        iconText = "Contacts"
-    ),
-    ChronologTopLevelDestination(
         route = ChronologRoute.CATEGORIES,
         selectedIcon = Icons.Default.Category,
         unselectedIcon = Icons.Default.Category,
         iconText = "Categories"
-    ),
-    ChronologTopLevelDestination(
-        route = ChronologRoute.TAGS,
-        selectedIcon = Icons.Default.LocalOffer,
-        unselectedIcon = Icons.Default.LocalOffer,
-        iconText = "Tags"
     ),
 )

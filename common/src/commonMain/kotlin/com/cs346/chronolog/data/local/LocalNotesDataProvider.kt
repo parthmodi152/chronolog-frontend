@@ -70,7 +70,6 @@ object LocalNotesDataProvider {
                 ```
                 """.replace("^", "$").trimIndent(),
             category = LocalCategoriesDataProvider.getCategoryById(3L),
-            tag = listOf(1L, 2L, 3L).map { LocalTagsDataProvider.getTagById(it) },
             isStarred = true,
             createdAt = "10 mins ago"
         ),
@@ -480,7 +479,6 @@ object LocalNotesDataProvider {
             - 有时无需测量自己的所有子项来确定布局大小
             """.replace("^", "$").trimIndent(),
             category = LocalCategoriesDataProvider.getCategoryById(1L),
-            tag = listOf(1L, 2L, 3L).map { LocalTagsDataProvider.getTagById(it) },
             isStarred = true,
             createdAt = "13 mins ago"
         ),
@@ -733,7 +731,6 @@ object LocalNotesDataProvider {
                 [Kotlin中Stack与LinkedList的实现方法示例 - 腾讯云开发者社区-](https://cloud.tencent.com/developer/article/1741702)
                 """.replace("^", "$").trimIndent(),
             category = LocalCategoriesDataProvider.getCategoryById(0L),
-            tag = listOf(1L, 2L, 3L).map { LocalTagsDataProvider.getTagById(it) },
             isStarred = true,
             createdAt = "20 mins ago"
         ),
@@ -1280,7 +1277,6 @@ object LocalNotesDataProvider {
                 ```
             """.trimIndent(),
             category = LocalCategoriesDataProvider.getCategoryById(2L),
-            tag = listOf(1L, 2L, 3L).map { LocalTagsDataProvider.getTagById(it) },
             isStarred = false,
             createdAt = "30 mins ago"
         ),
@@ -1308,7 +1304,6 @@ object LocalNotesDataProvider {
                 - `layout_height`填`0dp`时，`layout_weight`表示垂直方向的高度比例。
             """.trimIndent(),
             category = LocalCategoriesDataProvider.getCategoryById(1L),
-            tag = listOf(0L).map { LocalTagsDataProvider.getTagById(it) },
             isStarred = false,
             createdAt = "2 hours ago"
         ),

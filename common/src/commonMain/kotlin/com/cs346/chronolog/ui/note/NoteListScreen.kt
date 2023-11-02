@@ -26,7 +26,6 @@ fun NoteListScreen(
     noteLazyListState: LazyListState,
     modifier: Modifier = Modifier,
     navigateToDetail: (Long, ChronologContentType) -> Unit,
-    tagsGrid: @Composable () -> Unit = {},
 ) {
     LazyColumn(modifier = modifier, state = noteLazyListState) {
         item {
@@ -35,7 +34,6 @@ fun NoteListScreen(
                     modifier = Modifier.fillMaxWidth(),
                     searchContent = "Search Notes"
                 )
-                tagsGrid()
             }
         }
         items(items = notes, key = { it.id }) { note ->
@@ -52,7 +50,6 @@ fun NoteDetailScreen(
     note: Note,
     isFullScreen: Boolean = true,
     onBackPressed: () -> Unit = {},
-    addNote: () -> Unit = {},
     stateVertical: ScrollState = rememberScrollState()
 ) {
     Column(modifier = modifier.fillMaxSize()) {
@@ -61,23 +58,13 @@ fun NoteDetailScreen(
             isFullScreen = isFullScreen,
             onBackPressed = onBackPressed
         ) {
-//            if (!isFullScreen) {
-            IconButton(onClick = addNote) {
+            IconButton(onClick = {  }) {
                 Icon(
                     imageVector = Icons.Default.Edit,
                     contentDescription = "Edit",
                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
-//            } else {
-//                IconButton(onClick = { }) {
-//                    Icon(
-//                        imageVector = Icons.Default.MoreVert,
-//                        contentDescription = "More",
-//                        tint = MaterialTheme.colorScheme.onSurfaceVariant
-//                    )
-//                }
-//            }
         }
         NoteContent(
             noteBody = note.body,

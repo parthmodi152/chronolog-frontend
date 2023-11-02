@@ -33,10 +33,8 @@ fun NotesScreen(
     modifier: Modifier = Modifier,
     windowState: WindowState,
     notesUIState: UIState,
-    addNote: () -> Unit = {},
     closeDetailScreen: () -> Unit,
     navigateToDetail: (Long, ChronologContentType) -> Unit,
-    tagsGrid: @Composable () -> Unit = {},
 ) {
     val noteLazyListState = rememberLazyListState()
     val isTwoPane: Boolean = windowState.size.width > 850.dp
@@ -59,7 +57,6 @@ fun NotesScreen(
                         }
                         navigateToDetail(id, type)
                     },
-                    tagsGrid = tagsGrid
                 )
             },
             second = {
@@ -67,7 +64,6 @@ fun NotesScreen(
                 NoteDetailScreen(
                     note = notesUIState.selectedNote ?: notesUIState.notes.first(),
                     isFullScreen = false,
-                    addNote = addNote,
                     stateVertical = stateVertical
                 )
                 VerticalScrollbar(
@@ -113,8 +109,6 @@ fun NotesScreen(
                     }
                     navigateToDetail(id, type)
                 },
-                addNote = addNote,
-                tagsGrid = tagsGrid,
                 stateVertical = stateVertical
             )
         }
