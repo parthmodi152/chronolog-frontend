@@ -218,7 +218,6 @@ fun ChronologAppContent(
                 navigationContentPosition = navigationContentPosition,
                 navigateToTopLevelDestination = navigateToTopLevelDestination,
                 onDrawerClicked = onDrawerClicked,
-                addNote = addNote
             )
         }
         Column(

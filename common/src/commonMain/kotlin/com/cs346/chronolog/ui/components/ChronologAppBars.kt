@@ -39,7 +39,7 @@ fun ChronologSearchBar(
             color = MaterialTheme.colorScheme.outline
         )
         ChronologProfileImage(
-            drawableResource = "avatar_11",
+            drawableResource = "avatar_1",
             description = "profile",
             modifier = Modifier
                 .padding(12.dp)
